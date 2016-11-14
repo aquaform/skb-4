@@ -2,7 +2,20 @@ import express from 'express';
 import cors from 'cors';
 import expressJwt from 'express-jwt';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
+import bonyan from 'bonyan';
 import getApi from './api/api'
+
+global.__DEV__  = true;
+global.__PROD__ = false;
+
+const log = bonyan.createLogger({
+	name: 'app',
+	src: __DEV__,
+	level: 'trace',
+});
+
+log.info('Starting!');
 
 const app = express();
 app.use(cors());
